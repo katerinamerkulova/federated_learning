@@ -10,9 +10,9 @@ from contextlib import redirect_stdout
 def load_dataset():
     (train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
 
-    NUM_CLASSES = 10
-    cifar10_classes = ["airplane", "automobile", "bird", "cat", "deer",
-                       "dog", "frog", "horse", "ship", "truck"]
+    # NUM_CLASSES = 10
+    # cifar10_classes = ["airplane", "automobile", "bird", "cat", "deer",
+    #                    "dog", "frog", "horse", "ship", "truck"]
 
     # Normalize pixel values to be between 0 and 1
     train_images, test_images = train_images / 255.0, test_images / 255.0
