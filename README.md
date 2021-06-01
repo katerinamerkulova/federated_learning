@@ -17,4 +17,4 @@ $ pip -r install requirements.txt
 $ python distributed.py
 ```
 
-Also you can **run notebook 'Federated_Learning.ipynb'**.
+Also you can **run notebook 'Federated_Learning.ipynb'**. There is check do we have 3 parallel processes as well.
