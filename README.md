@@ -16,4 +16,4 @@ $ pip -r install requirements.txt
 $ python distributed.py
 ```
 
-Also you can **run notebook 'Federated_Learning'**.
+Also you can **run notebook 'Federated_Learning.ipynb'**.
