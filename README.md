@@ -2,7 +2,8 @@
 
 Disclaimer: This script does not exactly federated learning, but distributed, since it only runs on one CPU machine with 3 replicas. There used *tf.distribute* with *MirrorSrategy*, that allow to train synchronously across multiple replicas on one machine.
 
-**To run Docker** https://hub.docker.com/repository/docker/merkkerk/federated:
+**To run Docker** https://hub.docker.com/repository/docker/merkkerk/federated
+
 Via terminal:
 ```bash
 $ docker run merkkerk/federated
