@@ -2,9 +2,6 @@
 
 import tensorflow as tf
 from tensorflow.keras import datasets, layers, models
-import matplotlib.pyplot as plt
-
-from contextlib import redirect_stdout
 
 
 def load_dataset():
@@ -33,24 +30,12 @@ def build_and_compile_model():
     model.add(layers.Dense(64, activation='relu'))
     model.add(layers.Dense(10))
 
-    with open('model_summary.txt', 'w') as f:
-        with redirect_stdout(f):
-            model.summary()
+    model.summary()
 
     model.compile(optimizer='adam',
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                   metrics=['accuracy'])
     return model
-
-
-def plot(history):
-    plt.plot(history.history['accuracy'], label='accuracy')
-    plt.plot(history.history['val_accuracy'], label='val_accuracy')
-    plt.xlabel('Epoch')
-    plt.ylabel('Accuracy')
-    plt.ylim([0.5, 1])
-    plt.legend(loc='lower right')
-    plt.savefig('model_training.png')
 
 
 def main():
@@ -60,13 +45,11 @@ def main():
     with mirrored_strategy.scope():
         model = build_and_compile_model()
 
-    history = model.fit(train_images, train_labels, epochs=3,
-                        validation_data=(test_images, test_labels))
-    plot(history)
+    model.fit(train_images, train_labels, epochs=3,
+              validation_data=(test_images, test_labels))
 
-    test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
-    with open('model_loss_and_accuracy.txt', 'w') as outfile:
-        outfile.write(f'loss: {test_loss:.4f} - accuracy: {test_acc:.4f}')
+    test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=1)
+    print(f'loss: {test_loss:.4f} - accuracy: {test_acc:.4f}')
 
 
 if __name__ == "__main__":
